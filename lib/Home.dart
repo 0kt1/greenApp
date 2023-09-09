@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:greenshop/Cart.dart';
 import 'package:greenshop/Product.dart';
 
+
+//Our Home Page
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -10,20 +12,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
 
-  Map<String, String> data = {
-
-    "feugiat Lorem": "8",
-    "cursus purus.": "5",
-    "Nunc lectus": "5",
-    "Mauris nulla.":"1",
-    "Fusce feugiat.":"10",
-    
-    
-    
-  };
-
+  //Our Random Data For Products
   Map<String, List> data1 = {
 
     "Food": [
@@ -58,12 +48,13 @@ class _HomeState extends State<Home> {
 
   };
 
-
+  //Default DropDownValue
   String dropdownValue = 'CO2 Index';
   
   @override
   Widget build(BuildContext context) {
 
+    //Defining Device Height and Width
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
 
@@ -104,8 +95,7 @@ class _HomeState extends State<Home> {
                             ),
                           )
                         ]
-                      )
-
+                      ),
                     ),
                   ),
                 )
@@ -113,7 +103,6 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        //centerTitle: true,
         backgroundColor: Colors.black,
         elevation: 0,
       ),
@@ -127,6 +116,8 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+
+      //Floating Action Button To Navigate To Cart
       floatingActionButton: FloatingActionButton(
         elevation: 10,
         backgroundColor: Colors.black,
@@ -146,7 +137,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-// ignore: must_be_immutable
+
 
 
 
@@ -154,6 +145,8 @@ class _HomeState extends State<Home> {
 
 // ignore: must_be_immutable
 class Data extends StatefulWidget {
+
+  //Data
   Data({Key? key, required this.queryData, required this.data, required this.color, required this.dropdownvalue, required this.title}) : super(key: key);
 
   final String title;
@@ -173,9 +166,8 @@ class Data extends StatefulWidget {
 class _DataState extends State<Data> {
 
 
-
+  //Sorting The Products According To Price And CO2 Index
   void sort(filter) {
-    //var newdata = widget.data;
 
     if (filter == "Cost"){
       widget.data!.sort((a, b) => a.price.compareTo(b.price));
@@ -208,10 +200,10 @@ class _DataState extends State<Data> {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
+                //Dropdown Button
                 child: DropdownButton<String>(
                   underline: Container(height: 0.0,),
                   borderRadius: BorderRadius.circular(18),
-                  //value: dropdownValue,
                   iconSize: 30,
                   onChanged: (String? newValue){
                     setState(() {
@@ -233,6 +225,8 @@ class _DataState extends State<Data> {
             ],
           ),
         ),
+
+        //Representing Product Details In A Sized Box With A Image At Top
         SizedBox(
           height: 200,
           width: widget.queryData.size.width,
@@ -240,6 +234,7 @@ class _DataState extends State<Data> {
             scrollDirection: Axis.horizontal,
             children: widget.data!.map((e) => Padding(
               padding: const EdgeInsets.all(8.0),
+              //Gesture Detector To Add Product To Cart
               child: GestureDetector(
                 onTap: addtocart(e.title),
                 child: Material(
@@ -249,12 +244,9 @@ class _DataState extends State<Data> {
                     height: 150,
                     width: 150,
                     decoration: BoxDecoration(
-                      //color: Colors.grey,
                       borderRadius: BorderRadius.circular(8),
-
                     ),
                     child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           height: 75,
@@ -292,7 +284,6 @@ class _DataState extends State<Data> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-
                           ],
                         ),
                         Row(
@@ -315,8 +306,6 @@ class _DataState extends State<Data> {
                             ),
                           ],
                         ),
-
-
                       ],
                     ),
                   ),
@@ -326,13 +315,15 @@ class _DataState extends State<Data> {
           ),
         )
       ],
-
     );
   }
 
+  //My Cart
   var myCart = [];
 
+  //Method To Add Product To Cart
   addtocart(value) {
     myCart.add(value);
   }
+
 }
