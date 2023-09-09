@@ -10,5 +10,5 @@ Filters for price and co2 index to sort products according to increasing price a
 This helps user choose sustainable product in their budget.
 
 
-git repo: 
+git repo: https://github.com/0kt1/greenApp.git
 
